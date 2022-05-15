@@ -1,26 +1,22 @@
-from PIL import Image, ImageFilter, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import os
+for a in os.listdir('.'):
+    if a.endswith('.jpg'):
+        img = Image.open(a)
+        fn, flext = os.path.splitext(a)
 
-for g in os.listdir('.'):
-    if g.endswith('.jpg'):
-        img = Image.open(g)
-        fn, flext = os.path.splitext(g)
+        img= img.convert("L")
+        img1 = img.filter(ImageFilter.DETAIL)
+        img2 = img1.resize((1080, 1080))
+        width, height = img2.size
 
-        rs = img.convert('L')
-        rs1 = rs.filter(ImageFilter.DETAIL)
-        rs2 = rs1.resize((1080, 1080))
-        width, height = rs2.size
-
-        draw = ImageDraw.Draw(rs2)
-        text = "#X_X_X!"
-        title = "WHITE"
+        draw = ImageDraw.Draw(img2)
+        text = "ZhetiSeven Studio"
+        title = "BLACK"
         font = ImageFont.truetype("arial.ttf", 80)
         textwidth, textheight = draw.textsize(text, font)
-
         margin = 10
         x = width - textwidth - margin
         y = height - textheight - margin
-
         draw.text((x, y), text, title, font=font)
-
-        rs2.save('img/{}{}'.format(fn, flext))
+        img2.save('Adil/{}{}'.format(fn, flext))
