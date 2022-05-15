@@ -23,4 +23,4 @@ for g in os.listdir('.'):
 
         draw.text((x, y), text, title, font=font)
 
-        rs2.save('GG/{}{}'.format(fn, flext))
+        rs2.save('img/{}{}'.format(fn, flext))
